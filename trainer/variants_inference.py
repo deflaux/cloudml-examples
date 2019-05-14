@@ -17,6 +17,7 @@ import functools
 import os
 
 
+from absl import flags
 import tensorflow as tf
 
 from tensorflow.contrib.learn.python.learn import learn_runner
@@ -30,8 +31,6 @@ from tensorflow.python.lib.io.tf_record import TFRecordCompressionType
 DEFAULT_OUTPUT_ALTERNATIVE = "output_alt"
 PREDICTION_KEY = "key"
 PREDICTION_EXAMPLES = "examples"
-
-flags = tf.flags
 logging = tf.logging
 metrics_lib = tf.contrib.metrics
 
@@ -70,10 +69,10 @@ flags.DEFINE_boolean(
 flags.DEFINE_boolean(
     "use_gzip", True,
     "Whether the tfrecord files are compressed.")
-tf.flags.DEFINE_integer(
+flags.DEFINE_integer(
     "num_train_steps", 10000,
     "Number of training iterations. None means continuous training.")
-tf.flags.DEFINE_integer(
+flags.DEFINE_integer(
     "num_eval_steps", 10,
     "Number of evaluation iterations. When running continuous_eval, this is "
     "the number of eval steps run for each evaluation of a checkpoint.")
