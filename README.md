@@ -94,6 +94,7 @@ gcloud ai-platform jobs submit training ${JOB_NAME} \
   --runtime-version 1.2 \
   -- \
   --input_dir ${BUCKET}/1000-genomes/${EXAMPLES_SUBDIR}/ \
+  --export_dir ${BUCKET}/models/${JOB_NAME} \
   --sparse_features all_not_x_y \
   --num_classes 5 \
   --eval_labels="AFR,AMR,EAS,EUR,SAS" \
@@ -140,6 +141,7 @@ gcloud ai-platform jobs submit training ${JOB_NAME} \
   --config hptuning_config.yaml \
   -- \
   --input_dir ${BUCKET}/1000-genomes/${EXAMPLES_SUBDIR}/examples* \
+  --export_dir ${BUCKET}/hptuning/${JOB_NAME} \
   --sparse_features all_not_x_y \
   --num_classes 5 \
   --eval_labels="AFR,AMR,EAS,EUR,SAS" \

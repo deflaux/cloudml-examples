@@ -15,6 +15,7 @@
 
 import functools
 import os
+import sys
 
 
 from absl import flags
@@ -61,6 +62,9 @@ flags.DEFINE_string(
     "to work correctly. In other words you only need to use this if you want a "
     " different train/eval split than the one provided by default.")
 flags.DEFINE_string(
+    "export_dir", "",
+    "The directory in which the saved model will be stored.")
+flags.DEFINE_string(
     "job-dir", "",
     "Base output directory. Used by the local and cloud jobs.")
 flags.DEFINE_boolean(
@@ -94,6 +98,7 @@ flags.DEFINE_string(
     "when extracting the features.")
 
 FLAGS = flags.FLAGS
+FLAGS(sys.argv)
 
 SPARSE_FEATURE_NAMES = ["variants"]
 
@@ -397,7 +402,7 @@ def main(unused_argv):
           train_file_pattern,
           eval_file_pattern,
           FLAGS.batch_size),
-      output_dir=FLAGS.job_dir)
+      output_dir=FLAGS.export_dir)
 
 if __name__ == "__main__":
   tf.logging.set_verbosity(tf.logging.INFO)
